@@ -1,0 +1,99 @@
+{
+    "id": 1,
+    "title": "Mi madre ya no me conoce",
+    "subject": "08MGER (Cuidadores Informales)",
+    "description": "Gestionar el Síndrome del Cuidador en una hija con su madre en fase avanzada de Alzheimer.",
+    "character": { "name": "Elena", "avatar": "https://i.postimg.cc/02fMyRmN/Elena-caso-1-geronto.png" },
+    "nodes": {
+        "start": {
+            "text": "Entras en la sala y te encuentras con Elena. Tiene la mirada perdida y los hombros caídos.\n\n'Gracias por recibirme', dice con voz queda. 'No sé ni por dónde empezar... Es mi madre... A veces siento que... que ya no puedo más'.",
+            "media": {
+                "type": "image",
+                "url": "https://i.postimg.cc/G2T4BGb3/Generated-Image-September-05-2025-12-28-PM.jpg"
+            },
+            "options": [
+                { "text": "'Tranquila, Elena. Tómese su tiempo. Estoy aquí para escucharla.'", "next": "node2", "scores": { "empathy": 1, "acp": 0, "assertiveness": 0, "conflict": 0 } },
+                { "text": "'Es comprensible que se sienta así. El cuidado de una persona con Alzheimer es muy exigente.'", "next": "node3", "scores": { "empathy": 2, "acp": 1, "assertiveness": 0, "conflict": 0 } },
+                { "text": "'Nuestro objetivo hoy es encontrar soluciones prácticas para aliviar su carga.'", "next": "node_bad_start", "scores": { "empathy": -1, "acp": 0, "assertiveness": 1, "conflict": 0 } }
+            ]
+        },
+        "node_bad_start": {
+            "text": "Elena frunce el ceño. '¿Soluciones? Si fuera tan fácil... Siento que nadie entiende lo que es esto'. Tu enfoque directo y sin validación previa ha creado una barrera.",
+            "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": -2, "acp": -1, "assertiveness": 0, "conflict": 0 } }]
+        },
+        "node2": {
+            "text": "Elena asiente, pero la angustia es visible en su rostro. 'Es que... me siento tan culpable. Ella lo dio todo por mí y ahora... la veo como una carga. A veces me enfado con ella... Soy una hija horrible'.",
+            "options": [
+                { "text": "'No diga eso, de ninguna manera es usted una mala hija.'", "next": "node_bad_guilt", "scores": { "empathy": -1, "acp": -1, "assertiveness": 0, "conflict": 0 } },
+                { "text": "'Sentir enfado o que la situación le sobrepasa no la convierte en una mala hija. Son sentimientos muy comunes en cuidadores.'", "next": "node3", "scores": { "empathy": 2, "acp": 1, "assertiveness": 0, "conflict": 0 } }
+            ]
+        },
+         "node_bad_guilt": {
+            "text": "Aunque tu intención es buena, al negar directamente sus sentimientos, Elena se siente incomprendida. 'Usted no lo entiende... sí lo soy'. Se cierra en sí misma.",
+            "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": -2, "acp": -1, "assertiveness": 0, "conflict": 0 } }]
+        },
+        "node3": {
+            "text": "Elena te mira y por primera vez ves un atisbo de alivio en sus ojos. '¿De verdad? Nadie me había dicho eso. Todos me dicen que tengo que ser fuerte, pero es que hay días que no la reconozco. Ya no es mi madre'.",
+            "options": [
+                { "text": "'Debe ser increíblemente doloroso sentir que está perdiendo a su madre de esa manera.'", "next": "node4", "scores": { "empathy": 3, "acp": 1, "assertiveness": 0, "conflict": 0 } },
+                { "text": "'¿Hubo alguna situación reciente que le hiciera sentir eso con especial intensidad?'", "next": "node3b_anecdote", "scores": { "empathy": 2, "acp": 2, "assertiveness": 0, "conflict": 0 } }
+            ]
+        },
+        "node3b_anecdote": {
+            "text": "Elena duda, pero acaba compartiendo una historia. 'El otro día... le llevé su postre favorito, arroz con leche. Y me miró con pánico. Empezó a gritar que quién era yo, que la dejara en paz. Me miraba como a una extraña... y me rompió el corazón'.",
+            "options": [
+                { "text": "'Gracias por compartir algo tan personal y doloroso. Es totalmente comprensible que esas situaciones la dejen devastada.'", "next": "node4", "scores": { "empathy": 3, "acp": 1, "assertiveness": 0, "conflict": 0 } },
+                { "text": "'Son fases de la enfermedad. Hay que intentar no tomarlo como algo personal.'", "next": "node_bad_guilt", "scores": { "empathy": -2, "acp": -1, "assertiveness": 1, "conflict": 0 } }
+            ]
+        },
+        "node4": {
+            "text": "Elena suspira, como si soltara un gran peso. 'Sí, lo es'. Se queda en silencio un momento. 'He dejado de ver a mis amigas, ya no voy a mis clases de yoga... mi vida entera es solo ella, 24 horas al día'.",
+            "options": [
+                { "text": "'Parece que su propio mundo se ha ido encogiendo hasta casi desaparecer. Eso es una carga inmensa.'", "next": "node5", "scores": { "empathy": 2, "acp": 1, "assertiveness": 0, "conflict": 0 } },
+                { "text": "'Es fundamental que se tome un respiro. Podemos buscar un servicio de ayuda a domicilio.'", "next": "node6_practical", "scores": { "empathy": 1, "acp": 1, "assertiveness": 1, "conflict": 0 } }
+            ]
+        },
+        "node5": {
+            "text": "Asiente, con los ojos llorosos. 'Totalmente. Y por eso sé que necesito ayuda, pero... no puedo. Algo me frena'.",
+             "options": [
+                { "text": "'Hablemos de ese freno. ¿Qué es lo que más le preocupa o le impide dar el paso?'", "next": "node6_explore", "scores": { "empathy": 2, "acp": 2, "assertiveness": 0, "conflict": 0 } }
+            ]
+        },
+        "node6_explore": {
+            "text": "Elena reflexiona. 'Son varias cosas... Por un lado, ¿cómo voy a meter a un extraño en casa? ¿Y si no la tratan con el mismo cariño que yo? Por otro, sentiría que la estoy abandonando, que tiro la toalla'.",
+            "options": [
+                { "text": "'Comprendo el miedo a lo desconocido y el sentimiento de abandono. Son dos barreras muy importantes. Si le parece, podemos hablar de ellas una por una.'", "next": "node7_trust", "scores": { "empathy": 2, "acp": 2, "assertiveness": 1, "conflict": 0 } },
+                { "text": "'Los profesionales están muy cualificados, no tiene de qué preocuparse.'", "next": "node_bad_guilt", "scores": { "empathy": -1, "acp": -1, "assertiveness": 1, "conflict": 0 } }
+            ]
+        },
+         "node6_practical": {
+            "text": "Elena parece receptiva a la idea, pero todavía dubitativa. 'He oído hablar de esas cosas... pero no sé... organizar todo eso, confiar en extraños, el coste...'.",
+            "options": [
+                { "text": "'Son dudas muy lógicas. Podemos explorarlas juntos, paso a paso y sin ningún compromiso. ¿Por dónde le gustaría empezar? ¿La confianza, el coste, el funcionamiento?'", "next": "node7_trust", "scores": { "empathy": 2, "acp": 3, "assertiveness": 0, "conflict": 0 } },
+                { "text": "'Es la mejor opción que tiene ahora mismo. No puede seguir así.'", "next": "node_bad_start", "scores": { "empathy": -2, "acp": 0, "assertiveness": 1, "conflict": 0 } }
+            ]
+        },
+        "node7_trust": {
+            "text": "Al darle el control sobre la conversación, Elena se siente más segura. 'Hablemos de la confianza. Me da pánico que alguien le pueda hacer daño o no la entienda.'",
+            "options": [
+                { "text": "'Es su principal preocupación, y es legítima. Podríamos empezar de forma muy gradual: un par de horas a la semana MIENTRAS usted está en casa. Así puede conocer a la persona y ver cómo trabaja.'", "next": "node8_plan", "scores": { "empathy": 1, "acp": 3, "assertiveness": 1, "conflict": 0 } },
+                { "text": "'Existen registros de profesionales acreditados y con referencias. Es un sistema seguro.'", "next": "node_neutral_end", "scores": { "empathy": 0, "acp": 1, "assertiveness": 1, "conflict": 0 } }
+            ]
+        },
+        "node8_plan": {
+            "text": "La idea de un inicio gradual parece disipar gran parte de sus miedos. 'Vaya... no lo había pensado así. Empezar poco a poco, estando yo delante... eso sí podría funcionar. Me da un poco de esperanza'.",
+            "options": [
+                 { "text": "'Ese es el objetivo, encontrar una solución a su medida. Si quiere, podemos ver los recursos disponibles y elaborar un primer borrador de este plan gradual.'", "next": "node_excellent_end", "scores": { "empathy": 2, "acp": 2, "assertiveness": 1, "conflict": 0 } }
+            ]
+        },
+        "node_neutral_end": {
+            "text": "Elena parece más informada, pero no totalmente convencida. 'De acuerdo, es mucha información. Necesito pensarlo'. Has plantado una semilla importante, pero el proceso requerirá más tiempo.",
+            "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 1, "acp": 1, "assertiveness": 1, "conflict": 0 } }]
+        },
+        "node_excellent_end": {
+            "text": "Poco a poco, Elena ha pasado de la desesperanza a la acción. Ha logrado establecer un vínculo de confianza profundo, ha validado sus emociones y han diseñado juntos un primer paso realista y centrado en sus necesidades. La sesión ha sido un éxito.",
+            "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 3, "acp": 3, "assertiveness": 1, "conflict": 0 } }]
+        },
+        "end": {}
+    }
+}
