@@ -1,0 +1,7 @@
+{
+  "titulacion": "Máster Universitario en Cuidados de Enfermería en Urgencias y Emergencias",
+  "competencyMapId": "enfermeria",
+  "casos": [
+    "casos/enfermeria/caso_01.json"
+  ]
+}
