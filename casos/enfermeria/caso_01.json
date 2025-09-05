@@ -1,0 +1,78 @@
+{
+    "id": 1,
+    "title": "Dolor Torácico que Evoluciona a PCR",
+    "subject": "Soporte Vital Avanzado (SVA)",
+    "description": "Manejar a un paciente con dolor torácico que sufre una parada cardiorrespiratoria (PCR) en Fibrilación Ventricular durante la evaluación inicial.",
+    "character": { "name": "Sr. García", "avatar": "https://i.postimg.cc/v8VdKXPH/Sr-Garcia.jpg" },
+    "nodes": {
+        "start": {
+            "text": "Estás en el box de urgencias atendiendo al Sr. García, de 65 años, que ha consultado por un dolor torácico opresivo irradiado a brazo izquierdo. Está consciente, pálido y sudoroso. Mientras le realizas un electrocardiograma, te dice 'Me encuentro muy mal, me mareo...' y pierde la consciencia. Justo en ese momento, observas el siguiente ritmo en el monitor:",
+            "media": {
+                "type": "video",
+                "url": "https://www.youtube.com/embed/_-ivqrcQ1xI"
+            },
+            "options": [
+                { "text": "Activar la alarma de parada y comprobar pulso carotídeo y respiración.", "next": "node_check_pulse", "scores": { "protocol": 3, "decision": 2, "teamwork": 2, "technique": 0 } },
+                { "text": "Terminar el electrocardiograma de 12 derivaciones antes de hacer nada.", "next": "node_bad_ecg", "scores": { "protocol": -2, "decision": -3, "teamwork": 0, "technique": 0 } },
+                { "text": "Administrar un antianginoso sublingual rápidamente.", "next": "node_bad_drug", "scores": { "protocol": -3, "decision": -2, "teamwork": 0, "technique": 0 } }
+            ]
+        },
+        "node_bad_ecg": {
+            "text": "El paciente está en parada cardíaca. Cada segundo es vital. Intentar terminar un ECG en esta situación es una pérdida de tiempo crítica que disminuye drásticamente sus posibilidades de supervivencia. La prioridad ha cambiado.",
+            "options": [{ "text": "Reaccionar, activar la alarma y comprobar pulso.", "next": "node_check_pulse", "scores": { "protocol": -1, "decision": -1, "teamwork": 0, "technique": 0 } }]
+        },
+        "node_bad_drug": {
+            "text": "El paciente ha perdido la consciencia y está en un ritmo de parada. Administrar medicación oral o sublingual es inútil y peligroso (riesgo de aspiración). La prioridad absoluta es el soporte vital.",
+            "options": [{ "text": "Reaccionar, activar la alarma y comprobar pulso.", "next": "node_check_pulse", "scores": { "protocol": -1, "decision": -1, "teamwork": 0, "technique": 0 } }]
+        },
+        "node_check_pulse": {
+            "text": "El equipo de paradas ha sido alertado y ya entra por la puerta con el carro. Tras 10 segundos, confirmas que el paciente no respira y no tiene pulso. El ritmo en monitor sigue siendo Fibrilación Ventricular. Lideras la situación. ¿Cuál es la prioridad inmediata?",
+            "options": [
+                { "text": "Ordenar: '¡Inicien compresiones torácicas de alta calidad ya! Preparen el desfibrilador'.", "next": "node_cpr_defib", "scores": { "protocol": 3, "decision": 2, "teamwork": 3, "technique": 0 } },
+                { "text": "Ordenar: '¡Rápido, canalicen una vía venosa de grueso calibre!'.", "next": "node_bad_iv_first", "scores": { "protocol": -2, "decision": -2, "teamwork": 0, "technique": 0 } },
+                { "text": "Ordenar: 'Preparen 1 mg de adrenalina para administrarlo lo antes posible'.", "next": "node_bad_drug_first_context", "scores": { "protocol": -2, "decision": -1, "teamwork": 0, "technique": 0 } }
+            ]
+        },
+        "node_bad_iv_first": {
+            "text": "La vía venosa será necesaria, pero la prioridad absoluta en una PCR presenciada y monitorizada es la RCP de alta calidad y la desfibrilación inmediata. Has retrasado las dos maniobras clave.",
+             "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "protocol": -3, "decision": -2, "teamwork": 0, "technique": 0 } }]
+        },
+        "node_bad_drug_first_context": {
+            "text": "La medicación es una parte posterior del algoritmo. La prioridad en una FV es siempre la desfibrilación precoz. Centrarse en los fármacos ahora es un error de priorización.",
+            "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "protocol": -2, "decision": -2, "teamwork": 0, "technique": 0 } }]
+        },
+        "node_cpr_defib": {
+            "text": "El equipo inicia RCP inmediatamente. Colocas las palas/parches del desfibrilador sobre el paciente mientras las compresiones continúan. Vuelves a confirmar Fibrilación Ventricular. ¿Cuál es la siguiente orden?",
+            "options": [
+                { "text": "'Dejen de comprimir un momento. Cargando a 200 J. ¡Fuera todos! ¡Choque! Reanuden RCP'.", "next": "node_post_shock", "scores": { "protocol": 3, "decision": 3, "teamwork": 3, "technique": 2 } },
+                { "text": "'Sigan con las compresiones mientras carga. Una vez cargado, paramos, chocamos y reanudamos'.", "next": "node_post_shock", "scores": { "protocol": 3, "decision": 3, "teamwork": 3, "technique": 3 } },
+                { "text": "'Paren la RCP. Hay que analizar bien el ritmo sin artefactos durante 10 segundos'.", "next": "node_bad_analyze", "scores": { "protocol": -2, "decision": -3, "teamwork": -1, "technique": 0 } }
+            ]
+        },
+        "node_bad_analyze": {
+            "text": "El ritmo ya está confirmado como FV y el paciente está en parada. Pausar la RCP durante 10 segundos para re-analizar es una interrupción inaceptable y muy perjudicial para el paciente.",
+            "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "protocol": -3, "decision": -2, "teamwork": 0, "technique": 0 } }]
+        },
+        "node_post_shock": {
+            "text": "El choque se administra de forma segura y la RCP se reanuda inmediatamente, minimizando la pausa. El equipo está canalizando un acceso venoso. Tras 2 minutos de RCP, el monitor sigue mostrando FV. ¿Cuál es el siguiente paso correcto?",
+            "options": [
+                { "text": "Preparar un segundo choque y ordenar la administración de 1 mg de Adrenalina IV.", "next": "node_excellent_end", "scores": { "protocol": 3, "decision": 3, "teamwork": 2, "technique": 1 } },
+                { "text": "Comprobar el pulso, ya que hemos administrado un choque.", "next": "node_bad_check_pulse_now", "scores": { "protocol": -2, "decision": -2, "teamwork": 0, "technique": 0 } },
+                { "text": "Administrar Amiodarona 300 mg IV ahora.", "next": "node_bad_amio", "scores": { "protocol": -1, "decision": -2, "teamwork": 0, "technique": 0 } }
+            ]
+        },
+        "node_bad_check_pulse_now": {
+            "text": "Incorrecto. La comprobación de pulso tras un choque solo se realiza si el ritmo cambia a uno que podría tener pulso (ritmo organizado). En FV persistente, solo interrumpe las vitales compresiones.",
+            "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "protocol": -2, "decision": -1, "teamwork": 0, "technique": 0 } }]
+        },
+        "node_bad_amio": {
+            "text": "La Amiodarona es el antiarrítmico de elección en la FV refractaria, pero se administra DESPUÉS del tercer choque, no del primero. El primer fármaco es siempre la Adrenalina.",
+             "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "protocol": -2, "decision": -1, "teamwork": 0, "technique": 0 } }]
+        },
+        "node_excellent_end": {
+            "text": "Has seguido el algoritmo de SVA a la perfección. Ante una PCR presenciada y monitorizada, has priorizado la RCP y la desfibrilación inmediata, has liderado al equipo con órdenes claras y has seguido la secuencia correcta de fármacos y choques. Excelente manejo.",
+            "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "protocol": 3, "decision": 3, "teamwork": 3, "technique": 2 } }]
+        },
+        "end": {}
+    }
+}
