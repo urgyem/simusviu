@@ -1,0 +1,84 @@
+{
+    "id": 2,
+    "title": "Todos los días son iguales aquí",
+    "subject": "08MGER (Cuidadores Formales)",
+    "description": "Abordar a un colega con claros síntomas de Burnout que afectan al equipo.",
+    "character": { "name": "Javier", "avatar": "https://placehold.co/100x100/FEF08A/713F12?text=J" },
+    "nodes": {
+        "start": {
+            "text": "Estás en la sala de personal y ves a tu colega Javier, un auxiliar veterano, mirando por la ventana con un café en la mano. Parece muy desanimado.\n\n'Otro día más en el paraíso', dice con un suspiro cargado de cinismo cuando te acercas.",
+            "options": [
+                { "text": "'Parece que hoy pesa un poco más de la cuenta, ¿no?'", "next": "node2", "scores": { "empathy": 2, "assertiveness": 0, "conflict": 0, "acp": 0 } },
+                { "text": "'Javier, me preocupa verte así últimamente. ¿Te apetece que hablemos un momento?'", "next": "node3", "scores": { "empathy": 2, "assertiveness": 2, "conflict": 0, "acp": 0 } },
+                { "text": "'¡Vamos, anímate! Piensa en lo importante que es nuestro trabajo.'", "next": "node_bad_cliche", "scores": { "empathy": -2, "assertiveness": 0, "conflict": 0, "acp": -1 } }
+            ]
+        },
+        "node_bad_cliche": {
+            "text": "Javier te mira con resentimiento. 'Gracias por el consejo, no sé qué haría sin tus ánimos'. Se levanta y se va, visiblemente molesto. La oportunidad de ayudar se ha perdido.",
+            "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": -2, "assertiveness": 0, "conflict": 1, "acp": -1 } }]
+        },
+        "node2": {
+            "text": "'¿Hoy? Todos los días son iguales. Haces tu trabajo, te dejas la espalda y ¿para qué? Mañana ni se acuerdan de tu nombre. Es agotador y nadie lo valora. Ni los de arriba, ni las familias, ni a veces... ni los propios compañeros'.",
+            "options": [
+                { "text": "'Entiendo esa sensación de frustración. Parece que te sientes bastante solo en esto.'", "next": "node3", "scores": { "empathy": 3, "assertiveness": 0, "conflict": 0, "acp": 0 } },
+                { "text": "'¿Problemas con los compañeros? ¿Ha pasado algo?'", "next": "node2b_conflict", "scores": { "empathy": 1, "assertiveness": 1, "conflict": 0, "acp": 0 } },
+                { "text": "'Pero esa es la naturaleza de su enfermedad, no es nada personal.'", "next": "node_bad_invalidating", "scores": { "empathy": -1, "assertiveness": 0, "conflict": 0, "acp": 0 } }
+            ]
+        },
+        "node_bad_invalidating": {
+            "text": "Javier suspira. 'Ya sé que no es personal, llevo 15 años en esto. Pero el desgaste es real. Veo que no lo entiendes'. Has intentado racionalizar sus sentimientos en lugar de validarlos, y se ha cerrado.",
+            "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": -2, "assertiveness": 0, "conflict": 0, "acp": -1 } }]
+        },
+        "node2b_conflict": {
+            "text": "Javier duda. 'No, nada en concreto... Es solo... que cada uno va a lo suyo. Hay poca piña. Sálvese quien pueda'. Desvía el tema, no quiere entrar en conflictos directos.",
+            "options": [
+                { "text": "'Ya veo. Esa sensación de remar solo debe ser agotadora.'", "next": "node3", "scores": { "empathy": 2, "assertiveness": 0, "conflict": 0, "acp": 0 } }
+            ]
+        },
+        "node3": {
+            "text": "Javier se encoge de hombros, pero tu empatía le ha llegado. 'Solo sé que cada vez me cuesta más levantarme por la mañana. Siento que he perdido la ilusión, que ya no marco la diferencia'.",
+            "options": [
+                { "text": "'Ese sentimiento de estancamiento y de perder la ilusión es un síntoma claro de desgaste. Me preocupas. ¿Has pensado en hablar con alguien?'", "next": "node4", "scores": { "empathy": 2, "assertiveness": 1, "conflict": 0, "acp": 1 } },
+                { "text": "'Tu experiencia es súper valiosa, Javier. ¿Qué crees que ha cambiado para que te sientas así?'", "next": "node5_empower", "scores": { "empathy": 2, "assertiveness": 1, "conflict": 0, "acp": 2 } },
+                { "text": "'Tu actitud está afectando al resto del equipo. Tienes que cambiar el chip.'", "next": "node_bad_accusatory", "scores": { "empathy": -1, "assertiveness": 2, "conflict": 2, "acp": 0 } }
+            ]
+        },
+        "node_bad_accusatory": {
+            "text": "Javier se pone a la defensiva. '¿Mi actitud? Yo vengo aquí y hago mi trabajo, cosa que otros no pueden decir. Si no te gusta, te quejas a dirección'. Has convertido una conversación de apoyo en una confrontación.",
+            "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": -2, "assertiveness": 1, "conflict": 3, "acp": -1 } }]
+        },
+        "node4": {
+            "text": "Javier baja un poco la guardia. '¿Hablar con quién? ¿Con dirección? Para que me pongan una etiqueta y me digan que si no estoy contento, la puerta es muy grande...'",
+            "options": [
+                { "text": "'No me refería a dirección. Quizá un profesional externo, o incluso podríamos buscar juntos algunas estrategias para que te sientas mejor en el trabajo.'", "next": "node6_solutions", "scores": { "empathy": 2, "assertiveness": 1, "conflict": 1, "acp": 1 } },
+                { "text": "'La dirección debería saberlo. Ocultar el problema no lo soluciona.'", "next": "node4b_insist", "scores": { "empathy": 0, "assertiveness": 2, "conflict": 1, "acp": 0 } }
+            ]
+        },
+        "node4b_insist": {
+            "text": "Javier niega con la cabeza. 'Tú no los conoces. Sería peor. Déjalo'. Tu insistencia en una vía que él no considera segura ha bloqueado la conversación.",
+            "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 0, "assertiveness": 1, "conflict": 1, "acp": 0 } }]
+        },
+        "node5_empower": {
+            "text": "Tu pregunta le sorprende y le hace reflexionar. '¿Qué ha cambiado? Que antes éramos un equipo. Y que yo tenía ideas, proponía cosas... pero ya para qué. Caes en la rutina, en el sota, caballo y rey'.",
+            "options": [
+                { "text": "'Echo de menos esas ideas. Recuerdo una vez que organizaste aquello con la música... ¿Qué pasaría si volvieras a proponer algo, aunque sea pequeño?'", "next": "node_excellent", "scores": { "empathy": 3, "assertiveness": 1, "conflict": -1, "acp": 3 } },
+                { "text": "'Es verdad que la rutina es un peligro. Quizás necesites unas vacaciones para desconectar.'", "next": "node_neutral_end", "scores": { "empathy": 1, "assertiveness": 0, "conflict": 0, "acp": 0 } }
+            ]
+        },
+        "node6_solutions": {
+            "text": "Javier suspira. 'Estrategias... La única estrategia es que toquen los Euromillones. No sé, estoy bloqueado'.",
+            "options": [
+               { "text": "'A veces, cuando uno está tan dentro del problema, no ve las salidas. Pero tu experiencia es muy valiosa. ¿Qué pequeña cosa cambiarías mañana si tuvieras una varita mágica?'", "next": "node5_empower", "scores": { "empathy": 2, "assertiveness": 1, "conflict": 0, "acp": 2 } }
+            ]
+        },
+        "node_neutral_end": {
+             "text": "Javier se encoge de hombros. 'Puede ser'. La conversación termina sin un camino claro. Has mostrado apoyo, pero no has conseguido movilizarle hacia una posible solución.",
+             "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 1, "assertiveness": 0, "conflict": 0, "acp": 1 } }]
+        },
+        "node_excellent": {
+            "text": "Has conseguido conectar con la raíz de su desmotivación. Javier sonríe por primera vez. 'Anda, todavía te acuerdas... No sé, quizás...'. Has abierto una pequeña puerta a la ilusión, recordándole su valía y su capacidad de iniciativa. Un manejo de la situación excelente.",
+            "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 3, "assertiveness": 1, "conflict": -1, "acp": 3 } }]
+        },
+        "end": {}
+    }
+}

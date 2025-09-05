@@ -1,0 +1,69 @@
+ { 
+        "id": 5, 
+        "title": "Tú querías ingresarle, yo no", 
+        "subject": "03MGER", 
+        "description": "Mediar en un conflicto entre dos hermanos por el ingreso de su padre.", 
+        "character": { "name": "Marta y Luis", "avatar": "https://placehold.co/100x100/E9D5FF/581C87?text=M&L" } ,
+        "nodes": {
+             "start": {
+                "text": "Entras en la habitación de Antonio, recién ingresado, y te encuentras a sus dos hijos, Marta y Luis, discutiendo en voz baja pero intensa.\n\nMarta: '¡Te lo dije, Luis! No está bien aquí. Está triste. ¡Esto es por tu culpa, por tus prisas!'\nLuis: '¿Mi culpa? ¡Alguien tenía que tomar una decisión! ¡Tú eres una idealista que no ve la realidad!'\nAmbos te miran. '¿Usted qué opina?', pregunta Luis.",
+                "options": [
+                    { "text": "'Yo opino que Antonio necesita tranquilidad. Les pido que solucionen esto fuera.'", "next": "node_neutral", "scores": { "empathy": 0, "assertiveness": 1, "conflict": 0, "acp": 1 } },
+                    { "text": "'Veo que es un momento difícil y hay opiniones encontradas. Si les parece, podemos hablarlo en un lugar más privado para ver cómo podemos ayudar a Antonio entre todos.'", "next": "node_good_mediate", "scores": { "empathy": 2, "assertiveness": 2, "conflict": -1, "acp": 2 } },
+                    { "text": "'Bueno, la decisión ya está tomada. Ahora lo importante es mirar hacia adelante.'", "next": "node_bad_minimize", "scores": { "empathy": -2, "assertiveness": 0, "conflict": 1, "acp": -1 } }
+                ]
+            },
+             "node_neutral": {
+                "text": "Los hermanos salen de la habitación, pero siguen discutiendo en el pasillo. Has protegido el espacio del residente, pero no has abordado el conflicto familiar que inevitablemente le afectará.",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 0, "assertiveness": 1, "conflict": 0, "acp": 1 } }]
+            },
+             "node_bad_minimize": {
+                "text": "Marta te mira dolida. '¿Mirar hacia adelante? Usted no entiende el daño que esto le está haciendo'. Has invalidado sus sentimientos y te has posicionado, perdiendo la oportunidad de mediar.",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": -2, "assertiveness": 0, "conflict": 2, "acp": -1 } }]
+            },
+            "node_good_mediate": {
+                "text": "En una sala, la tensión sigue. Luis resopla. 'Es que ella no entiende la presión, el día a día. ¡Yo también quiero a papá en casa, pero era imposible!'. Marta le interrumpe: '¡Imposible para ti! ¡Porque no tenías paciencia! Yo lo habría conseguido si me hubieras ayudado más.'",
+                "options": [
+                    { "text": "'Veo que ambos han vivido esta situación con mucho estrés y desde lugares distintos. Luis, usted sentía que la situación era insostenible y, Marta, usted siente que se rindieron demasiado pronto y que no recibió el apoyo que necesitaba. ¿Es así?'", "next": "node2_validate", "scores": { "empathy": 3, "assertiveness": 1, "conflict": -2, "acp": 1 } },
+                    { "text": "'Intentemos no usar reproches. ¿Qué podemos hacer ahora por su padre?'", "next": "node3_common_ground", "scores": { "empathy": 0, "assertiveness": 2, "conflict": 0, "acp": 2 } },
+                    { "text": "'Marta, entiendo su dolor, pero Luis tiene razón en que la situación en casa era muy complicada.'", "next": "node_bad_side_luis", "scores": { "empathy": -1, "assertiveness": 0, "conflict": 2, "acp": 0 } }
+                ]
+            },
+            "node_bad_side_luis": {
+                "text": "Marta se levanta, enfadada. '¿Lo ve? ¡Otro que le da la razón! Si todos piensan así, no tengo nada más que hablar'. Has tomado partido y has roto la posibilidad de mediación.",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": -2, "assertiveness": 0, "conflict": 3, "acp": -1 } }]
+            },
+            "node2_validate": {
+                "text": "Ambos hermanos asienten, sorprendidos de que alguien haya verbalizado sus dos posturas sin juzgarlas. Se hace un breve silencio.",
+                "options": [
+                    { "text": "'Esa base de sufrimiento compartido es importante. Pero ahora, su padre les necesita a los dos. ¿Cómo creen que está viviendo él esta tensión entre ustedes?'", "next": "node3_father_focus", "scores": { "empathy": 2, "assertiveness": 1, "conflict": -1, "acp": 3 } },
+                    { "text": "'Parece que la decisión se tomó en un momento de mucha tensión y ahora hay heridas abiertas. Lo importante es que ambos quieren lo mejor para su padre. ¿Podemos partir de esa base común para construir?'", "next": "node3_common_ground", "scores": { "empathy": 2, "assertiveness": 1, "conflict": -1, "acp": 2 } }
+                ]
+            },
+            "node3_father_focus": {
+                "text": "Marta es la primera en responder, con voz más suave. 'Pues fatal. Se debe sentir como una carga, un problema para nosotros...'. Luis añade: 'Por eso digo que tenemos que estar unidos por él. No podemos fallarle ahora'.",
+                "options": [
+                    { "text": "'Exacto. Su padre necesita ver que sus hijos son un equipo. Entonces, en lugar de mirar al pasado, ¿qué necesita Antonio de ustedes dos, juntos, en esta nueva etapa?'", "next": "node4_planning", "scores": { "empathy": 2, "assertiveness": 1, "conflict": -2, "acp": 3 } }
+                ]
+            },
+            "node3_common_ground": {
+                "text": "Ambos asienten, aunque con reservas. 'Sí, claro que queremos lo mejor para él', dice Luis. Marta añade: 'Por supuesto. Por eso no debería estar aquí'. La conversación amenaza con volver al punto de partida.",
+                "options": [
+                    { "text": "'La decisión pasada ya no se puede cambiar, pero el presente y el futuro sí. Centrémonos en una cosa: ¿Qué pequeña acción podrían hacer juntos, hoy mismo, para que su padre se sienta mejor?'", "next": "node4_planning", "scores": { "empathy": 1, "assertiveness": 2, "conflict": -1, "acp": 2 } },
+                    { "text": "'Marta, entiendo que aún no está de acuerdo, pero es la realidad que tenemos. Hay que aceptarla.'", "next": "node_bad_minimize", "scores": { "empathy": -2, "assertiveness": 1, "conflict": 1, "acp": -1 } }
+                ]
+            },
+            "node4_planning": {
+                "text": "Tu intervención reenfoca la conversación hacia la acción. Empiezan a hablar de cosas concretas: traerle fotos, su radio, organizar las llamadas...\n\nMarta: 'Podría venir yo por las tardes a leerle el periódico'.\nLuis: 'Y yo por las mañanas, antes de ir al trabajo, para ayudarle con el desayuno'.",
+                "options": [
+                    { "text": "'Esa es una excelente idea. Definen roles claros y aseguran que su padre se sienta acompañado. La collaboration entre ustedes es el mejor apoyo para él.'", "next": "node_excellent", "scores": { "empathy": 2, "assertiveness": 1, "conflict": -1, "acp": 2 } },
+                    { "text": "'Perfecto. ¿Lo ven como no era tan difícil ponerse de acuerdo?'", "next": "node_neutral", "scores": { "empathy": -1, "assertiveness": 0, "conflict": 0, "acp": 1 } }
+                ]
+            },
+            "node_excellent": {
+                "text": "Has navegado un conflicto familiar complejo, actuando como un mediador eficaz. Has transformado una dinámica de culpa y reproches en un plan de acción colaborativo y centrado en el bienestar de su padre. Excelente trabajo.",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 2, "assertiveness": 2, "conflict": -2, "acp": 3 } }]
+            },
+            "end": {}
+        }
+    }

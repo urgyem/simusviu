@@ -1,0 +1,46 @@
+ { 
+        "id": 7, 
+        "title": "Los datos dicen lo contrario", 
+        "subject": "07MGER", 
+        "description": "Defender una perspectiva psicosocial frente al modelo biomédico de la médica del centro.", 
+        "character": { "name": "Dra. Morales", "avatar": "https://placehold.co/100x100/BAE6FD/0C4A6E?text=Dra" } ,
+        "nodes": {
+            "start": {
+                "text": "En la reunión de equipo, expones tu preocupación por el Sr. Garrido: 'He observado un aumento de la apatía y el aislamiento en el Sr. Garrido. Propongo revisar su PAI para incluir actividades más significativas para él'.\nLa Dra. Morales revisa sus papeles. 'Sus constantes son estables y la analítica es correcta. Centrémonos en lo clínico, por favor, no en percepciones subjetivas'.",
+                "options": [
+                    { "text": "'De acuerdo, doctora.' (Decides no insistir).", "next": "node_bad_retreat", "scores": { "empathy": 0, "assertiveness": -2, "conflict": 0, "acp": -2 } },
+                    { "text": "'Con todo respeto, doctora, mi percepción no es subjetiva, es una observación profesional basada en el seguimiento diario, y es tan importante como la analítica para una atención integral.'", "next": "node_bad_confront", "scores": { "empathy": 0, "assertiveness": 1, "conflict": 2, "acp": 1 } },
+                    { "text": "'Entiendo la importancia de los datos clínicos. Precisamente por eso me preocupa: estos síntomas de apatía podrían ser precursores de una depresión que afecte a su estado clínico general, como la nutrición o la adherencia al tratamiento.'", "next": "node_good_link", "scores": { "empathy": 1, "assertiveness": 2, "conflict": -1, "acp": 2 } }
+                ]
+            },
+            "node_bad_retreat": {
+                "text": "Has evitado el conflicto, pero has fallado en defender el enfoque biopsicosocial y, sobre todo, en abogar por las necesidades del residente. El plan de atención no se modificará y el malestar del Sr. Garrido podría agravarse.",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 0, "assertiveness": -2, "conflict": 0, "acp": -2 } }]
+            },
+             "node_bad_confront": {
+                "text": "La Dra. Morales te mira con frialdad. 'No cuestione mi criterio ni la jerarquía de la evidencia'. El tono ha subido y la discusión se ha vuelto personal. El resto del equipo se siente incómodo y el foco se ha alejado del residente.",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 0, "assertiveness": 1, "conflict": 3, "acp": 0 } }]
+            },
+            "node_good_link": {
+                "text": "Tu argumento, que vincula lo psicosocial con lo clínico, hace que la doctora te preste más atención, aunque sigue escéptica. 'Es una hipótesis interesante, pero la depresión es un diagnóstico mayor. Necesito algo más tangible que 'observaciones' para justificar un cambio en el PAI.'",
+                "options": [
+                    { "text": "'Por supuesto. He registrado un descenso del 60% en su participación en actividades grupales en el último mes. Además, el personal de sala me ha comunicado una disminución en su ingesta en las comidas principales.'", "next": "node_excellent_data", "scores": { "empathy": 1, "assertiveness": 3, "conflict": -1, "acp": 2 } },
+                    { "text": "'Más allá de los datos, como equipo debemos atender a su bienestar emocional. El Sr. Garrido nos está diciendo con su comportamiento que algo no va bien.'", "next": "node_neutral_nodata", "scores": { "empathy": 1, "assertiveness": 1, "conflict": 1, "acp": 1 } },
+                    { "text": "'Quizás podríamos hacerle una escala de depresión geriátrica (GDS) para objetivarlo.'", "next": "node_good_proposal", "scores": { "empathy": 1, "assertiveness": 2, "conflict": 0, "acp": 2 } }
+                ]
+            },
+            "node_neutral_nodata": {
+                "text": "La Dra. Morales suspira. 'Aprecio su compromiso, pero sin evidencia concreta, no puedo justificar un cambio en el plan. Esté atento/a, registre sus observaciones de forma sistemática y si reúne más datos, lo volvemos a hablar en la próxima reunión.'",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 1, "assertiveness": 1, "conflict": 1, "acp": 1 } }]
+            },
+             "node_good_proposal": {
+                "text": "La Dra. Morales considera tu propuesta. 'Me parece una buena idea. Es un dato objetivo que nos ayudará a ambos. Pase la escala y, según el resultado, reevaluamos el PAI. Buen trabajo.'",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 1, "assertiveness": 3, "conflict": -1, "acp": 3 } }]
+            },
+            "node_excellent_data": {
+                "text": "La Dra. Morales asiente, ahora claramente interesada. 'De acuerdo. Esos son datos relevantes que apoyan su observación. Combinan lo cualitativo con lo cuantitativo. Vamos a reevaluar el PAI como propone y haremos un seguimiento conjunto de la ingesta y el estado de ánimo'. Has defendido tu perspectiva con profesionalidad, datos y asertividad, logrando una verdadera colaboración interdisciplinar.",
+                 "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 1, "assertiveness": 3, "conflict": -2, "acp": 3 } }]
+            },
+            "end": {}
+        }
+    }

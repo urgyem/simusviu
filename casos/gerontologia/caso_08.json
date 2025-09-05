@@ -1,0 +1,87 @@
+ { 
+        "id": 8, 
+        "title": "Por favor, quiero irme a mi casa", 
+        "subject": "Caso Integrador", 
+        "description": "Gestionar una crisis dual: una residente con demencia agitada y su hija ansiosa por teléfono.", 
+        "character": { "name": "Carmen", "avatar": "https://placehold.co/100x100/FED7AA/9A3412?text=C" },
+        "nodes": {
+            "start": {
+                "text": "Estás en la habitación con Carmen, recién ingresada, que llora y trata de levantarse de la silla de ruedas. '¡Esta no es mi casa! ¡Quiero irme! ¡Lléveme a mi casa, por favor!'.\nEn ese preciso instante, suena tu teléfono de trabajo. En la pantalla lees: 'Hija de Carmen'.",
+                "options": [
+                    { "text": "Ignorar el teléfono y centrarte en calmar a Carmen.", "next": "node_ignore_phone", "scores": { "empathy": 2, "assertiveness": 0, "conflict": 0, "acp": 2 } },
+                    { "text": "Contestar al teléfono mientras intentas hacerle un gesto a Carmen para que espere.", "next": "node_bad_multitask", "scores": { "empathy": -2, "assertiveness": -1, "conflict": 1, "acp": -2 } },
+                    { "text": "Acercarte a Carmen, poner una mano tranquilizadora en su brazo y contestar el teléfono de forma rápida y directa.", "next": "node_good_multitask", "scores": { "empathy": 2, "assertiveness": 2, "conflict": -1, "acp": 2 } }
+                ]
+            },
+            "node_bad_multitask": {
+                "text": "Contestas: 'Dígame'. La hija: '¡Hola! ¿Cómo está mamá?'. Mientras, Carmen te tira de la manga, más fuerte. '¡Lléveme a casa!'. La hija lo oye y se alarma: '¿Qué son esos gritos? ¡¿Qué le pasa?! ¡Póngamela!'",
+                "options": [
+                    { "text": "Le pasas el teléfono a Carmen, que está llorando.", "next": "node_chaos", "scores": { "empathy": -3, "assertiveness": -2, "conflict": 2, "acp": -3 } },
+                    { "text": "'¡Señora, cálmese, estoy al teléfono!', le dices a Carmen.", "next": "node_chaos", "scores": { "empathy": -3, "assertiveness": 0, "conflict": 2, "acp": -2 } }
+                ]
+            },
+            "node_chaos": {
+                "text": "La situación se descontrola por completo. Carmen se agita más al no entender qué pasa, y la hija al otro lado del teléfono se pone histérica al oír el llanto y la confusión. Has perdido el control de la situación.",
+                 "options": [{ "text": "Finalizar y ver evaluación", "next": "end" }]
+            },
+            "node_ignore_phone": {
+                "text": "Te centras en Carmen. Usas técnicas de validación. 'Veo que está muy triste y echa de menos su casa. Es normal sentirse así'. Mientras, el teléfono deja de sonar, pero a los 30 segundos vuelve a insistir. La hija debe estar muy nerviosa.",
+                "options": [
+                    { "text": "Seguir ignorando el teléfono. Carmen es la prioridad absoluta.", "next": "node_bad_consequence", "scores": { "empathy": 1, "assertiveness": -1, "conflict": 1, "acp": 1 } },
+                    { "text": "Decirle a Carmen con calma: 'Carmen, esta llamada es importante. Voy a contestar y estoy con usted en un segundo'.", "next": "node_good_multitask", "scores": { "empathy": 2, "assertiveness": 2, "conflict": -1, "acp": 1 } }
+                ]
+            },
+            "node_bad_consequence": {
+                "text": "Consigues calmar un poco a Carmen, pero cuando sales de la habitación tienes 5 llamadas perdidas y un mensaje de la hija muy enfadada: 'NADIE ME COGE EL TELÉFONO, ¿HA PASADO ALGO GRAVE? VOY PARA ALLÁ'. Has resuelto una parte de la crisis, pero has creado otra mayor con la familia.",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 1, "assertiveness": -1, "conflict": 2, "acp": 1 } }]
+            },
+            "node_good_multitask": {
+                "text": "Contestas: 'Dígame'. La hija habla muy rápido y nerviosa: '¡Hola! Soy la hija de Carmen, ¿cómo está mi madre? ¿Está bien? ¡Estoy muy preocupada!'. De fondo, oyes que Carmen sigue pidiendo irse a casa.",
+                "options": [
+                    { "text": "'Hola, soy [Tu Nombre]. Su madre está conmigo. Está un poco desubicada por el cambio, lo cual es normal. Déjeme que me centre en tranquilizarla y le prometo que la llamo en 5 minutos. ¿De acuerdo?'", "next": "node_set_boundary", "scores": { "empathy": 2, "assertiveness": 3, "conflict": -1, "acp": 2 } },
+                    { "text": "'Ahora mismo está un poco agitada, pero no se preocupe, es lo habitual los primeros días.'", "next": "node_vague", "scores": { "empathy": 0, "assertiveness": 0, "conflict": 1, "acp": 0 } },
+                    { "text": "'Ahora mismo no puedo atenderla, estoy ocupada con su madre.' (Y cuelgas).", "next": "node_bad_consequence", "scores": { "empathy": -1, "assertiveness": 1, "conflict": 2, "acp": -1 } }
+                ]
+            },
+            "node_vague": {
+                "text": "Tu intento de tranquilizar es demasiado vago y la hija se pone más nerviosa. '¿Cómo que agitada? ¿Qué está pasando? ¡Quiero saberlo ahora!'. La situación se te complica.",
+                "options": [
+                     { "text": "'Por favor, confíe en mí. Déjeme que la atienda y la llamo en 5 minutos con todos los detalles.'", "next": "node_set_boundary", "scores": { "empathy": 1, "assertiveness": 2, "conflict": 0, "acp": 1 } },
+                     { "text": "Intentas explicarle la situación con detalle por teléfono, dividiendo tu atención.", "next": "node_bad_multitask", "scores": { "empathy": -2, "assertiveness": -1, "conflict": 1, "acp": -2 } }
+                ]
+            },
+            "node_set_boundary": {
+                "text": "Tu tono seguro calma a la hija. 'De acuerdo, por favor, llámeme en cuanto pueda'. Cuelgas y te centras en Carmen, que sigue repitiendo que quiere irse a casa.",
+                "options": [
+                    { "text": "Validar su emoción: 'Carmen, sé que echa mucho de menos su casa. Debe ser muy difícil estar en un sitio nuevo. ¿Quiere que hablemos un poco de su casa?'", "next": "node_calm_carmen", "scores": { "empathy": 3, "acp": 3, "assertiveness": 0, "conflict": 0 } },
+                    { "text": "Reorientar a la realidad: 'Pero Carmen, esta es su casa ahora. Tiene que acostumbrarse.'", "next": "node_fail_carmen", "scores": { "empathy": -2, "acp": -2, "assertiveness": 0, "conflict": 1 } },
+                    { "text": "Distraer: 'Mire por la ventana, Carmen. ¡Qué árbol tan grande! ¿Sabe qué pájaros son esos?'", "next": "node_distract_carmen", "scores": { "empathy": 1, "acp": 1, "assertiveness": 0, "conflict": 0 } }
+                ]
+            },
+            "node_fail_carmen": {
+                "text": "Tu intento de reorientarla bruscamente aumenta su angustia. '¡No! ¡Mi casa no es esta!'. Se pone a llorar con más fuerza. Ahora te resultará más difícil calmarla antes de llamar a la hija.",
+                "options": [{ "text": "Llamar a la hija en este estado", "next": "node_final_call_bad", "scores": { "empathy": -2, "acp": -2, "assertiveness": 0, "conflict": 1 } }]
+            },
+            "node_distract_carmen": {
+                "text": "La distracción funciona momentáneamente. Carmen mira por la ventana. Está más tranquila, pero la emoción de fondo no ha sido atendida y podría volver a surgir en cualquier momento.",
+                 "options": [{ "text": "Llamar a la hija ahora", "next": "node_final_call_neutral", "scores": { "empathy": 1, "acp": 1, "assertiveness": 0, "conflict": 0 } }]
+            },
+            "node_calm_carmen": {
+                "text": "Carmen te mira y, aunque sigue triste, su agitación disminuye. 'Mi casa... tiene un jardín con rosales'. Empieza a hablar de su hogar, conectando contigo y calmándose. Tras unos minutos, está mucho más serena.",
+                "options": [{ "text": "Llamar a la hija ahora", "next": "node_final_call_good", "scores": { "empathy": 2, "acp": 2, "assertiveness": 0, "conflict": 0 } }]
+            },
+            "node_final_call_bad": {
+                "text": "Llamas a la hija. 'Hola, soy yo. Mire, su madre sigue muy nerviosa, no consigo que se calme'. La hija se alarma muchísimo. '¿Pero qué le están haciendo? ¡Voy para allá ahora mismo!'. Has fracasado en gestionar la crisis, generando una gran desconfianza.",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end"}]
+            },
+            "node_final_call_neutral": {
+                "text": "Llamas a la hija. 'Hola, ya estoy aquí. He conseguido que se distraiga y está más tranquila'. La hija sigue preocupada. '¿Pero esto volverá a pasar?'. Has sido funcional, pero no has generado una alianza de confianza sólida.",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end" }]
+            },
+            "node_final_call_good": {
+                "text": "Llamas a la hija. 'Hola, ya estoy aquí. Carmen se ha tranquilizado, hemos estado hablando de su jardín. Quería decirle que esta reacción es normal y tenemos un plan para ayudarla en la adaptación'. La hija suspira aliviada. 'Muchas gracias, de verdad'. Has manejado la crisis dual con seguridad y profesionalidad. Impecable.",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end" }]
+            },
+            "end": {}
+        }
+    }

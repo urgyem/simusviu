@@ -1,0 +1,46 @@
+ { 
+        "id": 6, 
+        "title": "Esa no es mi función ahora mismo", 
+        "subject": "07MGER", 
+        "description": "Resolver un conflicto de roles y colaboración con un fisioterapeuta del equipo.", 
+        "character": { "name": "David", "avatar": "https://placehold.co/100x100/BBF7D0/166534?text=D" } ,
+        "nodes": {
+            "start": {
+                "text": "Necesitas movilizar a un residente de la silla al sillón para empezar una actividad de terapia ocupacional. Ves a tu colega David, el fisioterapeuta, en el ordenador de la sala.\n\n'David, ¿puedes echarme una mano un momento con esta movilización, por favor?'\nDavid ni te mira. 'Estoy terminando unos evolutivos. Esa movilización para una actividad te corresponde a ti'.",
+                "options": [
+                   { "text": "'Solo es un minuto, David. No seas así. Entre compañeros hay que ayudarse.'", "next": "node_bad_guilt", "scores": { "empathy": -1, "assertiveness": 0, "conflict": 2, "acp": 0 } },
+                   { "text": "'Disculpa, veo que estás ocupado. Necesito ayuda porque la seguridad del residente es lo primero y no puedo hacerlo solo. ¿Podrías hacer un hueco de 30 segundos?'", "next": "node2_good_assertive", "scores": { "empathy": 1, "assertiveness": 2, "conflict": 0, "acp": 2 } },
+                   { "text": "'Entiendo. ¿Cuándo crees que podrías tener un momento?'", "next": "node2_neutral_passive", "scores": { "empathy": 1, "assertiveness": -1, "conflict": 0, "acp": 1 } }
+                ]
+            },
+            "node_bad_guilt": {
+                 "text": "'¿Que no sea así? Estoy haciendo mi trabajo. Haz tú el tuyo y no me digas cómo tengo que ser'. David se ha puesto a la defensiva y se niega a colaborar. El ambiente se ha tensado.",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": -1, "assertiveness": 0, "conflict": 3, "acp": -1 } }]
+            },
+            "node2_neutral_passive": {
+                "text": "David se encoge de hombros sin mirarte. 'No lo sé, cuando acabe esto. Tengo mucho lío'. Te deja esperando indefinidamente. Has sido demasiado pasivo/a y la necesidad del residente no ha sido atendida.",
+                 "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 1, "assertiveness": -2, "conflict": 1, "acp": -1 } }]
+            },
+            "node2_good_assertive": {
+                "text": "Tu tono, centrado en la seguridad del residente y no en una orden, hace que David levante la vista. 'Uf, vale, voy. Pero es que siempre me interrumpen cuando estoy con esto de los informes, que es un rollo'.",
+                "options": [
+                   { "text": "'Te entiendo, los informes son tediosos. Te agradezco mucho la ayuda.' (Después de la movilización) 'Oye, lo de antes... ¿te parece si luego buscamos un momento para hablar de cómo coordinarnos mejor?'", "next": "node_excellent", "scores": { "empathy": 2, "assertiveness": 2, "conflict": -1, "acp": 1 } },
+                   { "text": "'Ya, todos estamos muy ocupados. Pero esto era importante.'", "next": "node3_neutral", "scores": { "empathy": -1, "assertiveness": 1, "conflict": 1, "acp": 0 } },
+                   { "text": "'Pues si no te interrumpieran, quizás es porque no estás disponible para el equipo.'", "next": "node_bad_accusatory", "scores": { "empathy": -2, "assertiveness": 0, "conflict": 3, "acp": -1 } }
+                ]
+            },
+             "node_bad_accusatory": {
+                "text": "David te ayuda de mala gana, pero tu comentario le ha sentado fatal. '¿Insinúas que no colaboro? Habla por ti'. Has resuelto lo inmediato, pero has creado un conflicto mayor a largo plazo.",
+                 "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": -2, "assertiveness": 0, "conflict": 3, "acp": -1 } }]
+            },
+            "node3_neutral": {
+                 "text": "David te ayuda con la movilización, pero de forma seca y sin decir nada más. Has sido funcional, pero has perdido la oportunidad de mejorar la relación y la dinámica del equipo.",
+                 "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 0, "assertiveness": 1, "conflict": 1, "acp": 1 } }]
+            },
+            "node_excellent": {
+                "text": "David asiente, más relajado. 'Vale, sí. A ver si encontramos un sistema mejor'. No solo has resuelto la necesidad inmediata del residente, sino que has validado la frustración de tu colega y has abierto la puerta a mejorar la dinámica del equipo a largo plazo. Un manejo impecable.",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 3, "assertiveness": 3, "conflict": -2, "acp": 2 } }]
+            },
+            "end": {}
+        }
+    }

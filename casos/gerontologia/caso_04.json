@@ -1,0 +1,65 @@
+  { 
+        "id": 4, 
+        "title": "En esta residencia no la cuidan bien", 
+        "subject": "03MGER", 
+        "description": "Manejar la queja de una familiar que proyecta su culpa en el personal del centro.", 
+        "character": { "name": "Sofía", "avatar": "https://placehold.co/100x100/FECDD3/881337?text=S" },
+        "nodes": {
+            "start": {
+                "text": "Estás en el pasillo cuando Sofía, la hija de una residente, te aborda con el ceño fruncido y en voz alta.\n\n'¡Oiga! ¿Se puede saber por qué mi madre lleva el mismo jersey que ayer? ¡Esto es una vergüenza! ¡Con lo que pagamos aquí y no son capaces ni de cambiarla!'",
+                "options": [
+                    { "text": "'Señora, baje la voz, por favor. Estamos en un pasillo.'", "next": "node_bad_escalate", "scores": { "empathy": -2, "assertiveness": 1, "conflict": 2, "acp": 0 } },
+                    { "text": "'Entiendo su preocupación, Sofía. Si le parece, pasemos a mi despacho y lo hablamos tranquilamente.'", "next": "node2", "scores": { "empathy": 2, "assertiveness": 2, "conflict": -1, "acp": 1 } },
+                    { "text": "'Ahora mismo lo compruebo. A veces es ella la que insiste en ponerse una prenda, pero voy a verificarlo.'", "next": "node_bad_justify", "scores": { "empathy": 0, "assertiveness": 0, "conflict": 1, "acp": 0 } }
+                ]
+            },
+            "node_bad_escalate": {
+                "text": "'¡No me diga usted que baje la voz! ¡Tengo todo el derecho a quejarme! ¡Quiero hablar con el director ahora mismo!' El conflicto ha escalado y has perdido el control de la situación.",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": -2, "assertiveness": 0, "conflict": 2, "acp": 0 } }]
+            },
+            "node_bad_justify": {
+                "text": "Sofía te interrumpe. '¡No me ponga excusas! Su trabajo es convencerla. Para eso son profesionales. Esto confirma mis sospechas de que no están pendientes'. Has entrado en un bucle de justificaciones que aumenta su desconfianza.",
+                 "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": -1, "assertiveness": 0, "conflict": 2, "acp": -1 } }]
+            },
+            "node2": {
+                "text": "En el despacho, Sofía sigue alterada, pero ha bajado el tono. 'Es que no es solo el jersey. El otro día la comida estaba fría... Y esta mañana, cuando he llamado, nadie sabía decirme qué tal había pasado la noche. ¡Siento que no la miran!'",
+                "options": [
+                    { "text": "'Lamento que tenga esa impresión. Tomo nota de todo para investigarlo y le daremos una respuesta concreta sobre cada punto.'", "next": "node3_functional", "scores": { "empathy": 1, "assertiveness": 1, "conflict": 0, "acp": 0 } },
+                    { "text": "'Comprendo. Parece que más allá de estos incidentes, lo que de verdad le angustia es sentir que su madre es invisible, que no hay un cuidado atento y personal.'", "next": "node3_empathic", "scores": { "empathy": 3, "assertiveness": 0, "conflict": -1, "acp": 2 } },
+                    { "text": "'Sofía, nuestro personal es excelente. Tenemos protocolos para todo. A veces hay mucha carga de trabajo, pero su madre está bien atendida.'", "next": "node_bad_defensive", "scores": { "empathy": -2, "assertiveness": 0, "conflict": 2, "acp": -1 } }
+                ]
+            },
+            "node_bad_defensive": {
+                "text": "'¿Protocolos? ¡A mí no me hable de protocolos, hábleme del cuidado de mi madre! Veo que no me está entendiendo'. Tu respuesta defensiva ha creado una barrera insalvable.",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": -2, "assertiveness": 0, "conflict": 2, "acp": -2 } }]
+            },
+            "node3_functional": {
+                "text": "Sofía asiente, más calmada, pero aún desconfiada. 'Espero que así sea. Porque si no, tendré que tomar otras medidas. Estaré pendiente'. Has gestionado la queja de forma correcta y profesional, pero no has llegado al fondo del asunto. La relación sigue siendo frágil.",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 1, "assertiveness": 2, "conflict": 0, "acp": 1 } }]
+            },
+            "node3_empathic": {
+                "text": "Al poner nombre a su miedo más profundo, la expresión de Sofía cambia. Sus ojos se humedecen. 'Sí... es eso. Invisible. Me siento tan culpable por no poder estar yo aquí cada minuto... que necesito saber que ustedes sí la ven, que de verdad se preocupan por ella'. Has llegado a la raíz del problema.",
+                "options": [
+                   { "text": "'Ese sentimiento de culpa es muy pesado, y es normal que la haga estar hipervigilante. Gracias por compartirlo. Hablemos de cómo podemos hacerle sentir a usted más segura y conectada con el día a día de su madre.'", "next": "node4_collaborate", "scores": { "empathy": 3, "assertiveness": 1, "conflict": -1, "acp": 3 } },
+                   { "text": "'No tiene por qué sentirse culpable, está haciendo lo mejor para ella.'", "next": "node_bad_guilt", "scores": { "empathy": -1, "acp": -1, "assertiveness": 0, "conflict": 0 } }
+                ]
+            },
+             "node_bad_guilt": {
+                "text": "Aunque tu intención es buena, al negar directamente sus sentimientos, Sofía se siente incomprendida. 'Usted no lo entiende...'. Se retrae un poco.",
+                "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": -1, "acp": 0, "assertiveness": 0, "conflict": 1 } }]
+            },
+            "node4_collaborate": {
+                "text": "'¿Conectada? Sí, necesito eso. No quiero ser una inspectora, quiero ser su hija'.",
+                "options": [
+                   { "text": "'Perfecto. Le propongo algo: ¿Qué le parece si coordinamos una breve llamada de 5 minutos cada dos días a una hora fija para contarle alguna anécdota o detalle significativo del día de su madre? Algo más allá de lo puramente clínico.'", "next": "node_excellent", "scores": { "empathy": 2, "assertiveness": 2, "conflict": -2, "acp": 3 } },
+                   { "text": "'También podemos organizar una reunión con todo el equipo de referencia para que les ponga cara y vea cómo trabajamos.'", "next": "node_excellent", "scores": { "empathy": 2, "assertiveness": 2, "conflict": -2, "acp": 3 } },
+                   { "text": "'Puede llamar siempre que quiera, ya lo sabe.'", "next": "node3_functional", "scores": { "empathy": 1, "assertiveness": 1, "conflict": 0, "acp": 1 } }
+                ]
+            },
+            "node_excellent": {
+                 "text": "La cara de Sofía se ilumina. '¿De verdad? ¿Una anécdota? Eso sería... maravilloso'. Has transformado un conflicto en una oportunidad para crear una alianza terapéutica. Has pasado de un modelo de queja-respuesta a uno de colaboración y confianza. Un manejo excepcional.",
+                 "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 3, "assertiveness": 2, "conflict": -2, "acp": 3 } }]
+            },
+            "end": {}
+        }
+    }

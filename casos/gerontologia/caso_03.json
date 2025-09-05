@@ -1,0 +1,91 @@
+{
+    "id": 3,
+    "title": "Déjeme en paz, solo quiero estar solo",
+    "subject": "01MGER (Demencia/Depresión)",
+    "description": "Establecer un vínculo con un residente con apatía severa y síntomas depresivos.",
+    "character": { "name": "Manuel", "avatar": "https://placehold.co/100x100/BFDBFE/1E3A8A?text=M" },
+    "nodes": {
+        "start": {
+            "text": "Entras en la habitación de Manuel. Está sentado en un sillón, mirando un punto fijo en la pared. La habitación está en penumbra. En la mesilla hay una única foto de una mujer sonriendo.",
+            "media": {
+                "type": "image",
+                "url": "https://images.pexels.com/photos/103123/pexels-photo-103123.jpeg"
+            },
+            "options": [
+                { "text": "Sentarte en una silla cercana, a su altura, y esperar en silencio.", "next": "node2", "scores": { "empathy": 2, "acp": 1, "assertiveness": 0, "conflict": 0 } },
+                { "text": "'Buenos días Manuel, soy [Tu Nombre]. ¿Le importa si me siento un rato con usted?'", "next": "node2", "scores": { "empathy": 2, "acp": 2, "assertiveness": 0, "conflict": 0 } },
+                { "text": "'¡Venga, Manuel, arriba ese ánimo! Vamos a abrir la persiana para que entre el sol.'", "next": "node_bad_invasive", "scores": { "empathy": -2, "acp": -2, "assertiveness": 0, "conflict": 0 } }
+            ]
+        },
+        "node_bad_invasive": {
+            "text": "Tu tono jovial y tu acción no solicitada provocan el efecto contrario. Manuel se encoge en el sillón. 'Váyase', dice en un susurro hostil. Has invadido su espacio y has invalidado su estado de ánimo.",
+            "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": -3, "acp": -2, "assertiveness": 0, "conflict": 1 } }]
+        },
+         "node2": {
+            "text": "Manuel no responde, ni siquiera te mira. El silencio se hace denso. Tu presencia es tolerada, pero no bienvenida.",
+            "options": [
+                { "text": "Permanecer en silencio, mostrando una presencia tranquila y sin exigencias.", "next": "node3", "scores": { "empathy": 3, "acp": 1, "assertiveness": 0, "conflict": 0 } },
+                { "text": "'Bueno, si no le apetece hablar, volveré más tarde.'", "next": "node_end_neutral", "scores": { "empathy": 0, "acp": 0, "assertiveness": 0, "conflict": 0 } },
+                { "text": "'Sé que está triste por lo de su mujer, pero tiene que hacer un esfuerzo por seguir adelante.'", "next": "node_bad_cliche", "scores": { "empathy": -2, "acp": -1, "assertiveness": 0, "conflict": 0 } }
+            ]
+        },
+        "node_bad_cliche": {
+            "text": "Manuel te lanza una mirada cargada de dolor y rabia. 'Usted no sabe nada'. Has recurrido a un cliché que minimiza su sufrimiento. La conexión es imposible ahora.",
+            "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": -3, "acp": -2, "assertiveness": 0, "conflict": 0 } }]
+        },
+        "node3": {
+            "text": "Tras un largo minuto, Manuel gira la cabeza lentamente y te mira. '¿Qué quiere?', susurra con voz rasposa. 'Déjeme en paz'.",
+            "options": [
+                { "text": "'Respeto su deseo de estar solo. Solo me quedaré aquí un ratito, en silencio, por si necesita algo. No tiene que hablar si no quiere.'", "next": "node4", "scores": { "empathy": 3, "acp": 2, "assertiveness": 1, "conflict": 0 } },
+                { "text": "'Entiendo, pero mi trabajo es asegurarme de que esté bien. ¿Ha comido algo?'", "next": "node_bad_functional", "scores": { "empathy": -1, "acp": -1, "assertiveness": 1, "conflict": 1 } },
+                { "text": "'De acuerdo, como quiera.' (Y te vas de la habitación)", "next": "node_end_neutral", "scores": { "empathy": 0, "acp": 0, "assertiveness": 0, "conflict": 0 } }
+            ]
+        },
+        "node_bad_functional": {
+            "text": "Al centrarte en lo funcional, Manuel interpreta que no te importa cómo se siente, sino solo cumplir con tus tareas. 'Comí. Ahora váyase'. Se ha cerrado por completo.",
+            "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": -2, "acp": -2, "assertiveness": 1, "conflict": 1 } }]
+        },
+        "node4": {
+            "text": "Tu respuesta parece sorprenderle. No insistes, no exiges. Se mantiene el silencio, pero ahora es menos tenso. Después de un rato, Manuel habla sin mirarte.\n\n'¿Para qué? ¿Para qué levantarme? Todo es igual. Nada importa ya.'",
+            "options": [
+                { "text": "'Suena como si todo hubiera perdido el color y el sentido.'", "next": "node5", "scores": { "empathy": 3, "acp": 1, "assertiveness": 0, "conflict": 0 } },
+                { "text": "'A veces, cuando uno se siente así, ¿llega a pensar que sería mejor no estar aquí?' (Evaluar riesgo)", "next": "node5_risk", "scores": { "empathy": 1, "acp": 1, "assertiveness": 2, "conflict": 0 } },
+                { "text": "'Es una foto preciosa la que tiene en la mesilla. Parece una persona muy especial.'", "next": "node5_photo", "scores": { "empathy": 2, "acp": 3, "assertiveness": 0, "conflict": 0 } }
+            ]
+        },
+        "node5": {
+             "text": "Manuel asiente muy despacio. 'Color... sí. El color se fue con ella'. Hay una profunda tristeza en su voz, pero ha empezado a compartir su mundo interior.",
+            "options": [
+               { "text": "'Debe echarla muchísimo de menos.'", "next": "node6_memory", "scores": { "empathy": 2, "acp": 2, "assertiveness": 0, "conflict": 0 } }
+            ]
+        },
+         "node5_risk": {
+             "text": "Manuel te mira fijamente por primera vez. 'No se preocupe, no voy a hacer ninguna tontería. Estoy demasiado cansado hasta para eso'. Has abordado un tema clave de forma directa y profesional, generando confianza.",
+            "options": [
+               { "text": "'Gracias por su sinceridad, Manuel. Sentirse tan cansado de todo es un peso enorme.'", "next": "node5", "scores": { "empathy": 3, "acp": 1, "assertiveness": 0, "conflict": 0 } }
+            ]
+        },
+        "node5_photo": {
+            "text": "Manuel baja la vista hacia la foto. Por un instante, una microexpresión de ternura cruza su rostro. 'Lo era. Era mi Rosa'. Es la primera vez que ofrece información personal.",
+            "options": [
+               { "text": "'Rosa. Qué nombre tan bonito. Se la ve muy alegre en esa foto.'", "next": "node6_memory", "scores": { "empathy": 3, "acp": 3, "assertiveness": 0, "conflict": 0 } }
+            ]
+        },
+        "node6_memory": {
+            "text": "Un recuerdo parece aflorar. 'Siempre se estaba riendo. Le encantaban las tormentas de verano. Se ponía en la ventana a ver los relámpagos...'. Se detiene, como sorprendido de haber hablado tanto.",
+            "options": [
+               { "text": "'Gracias por compartir ese recuerdo conmigo, Manuel. Suena como un momento muy vivo.'", "next": "node_excellent", "scores": { "empathy": 3, "acp": 2, "assertiveness": 0, "conflict": 0 } },
+               { "text": "'Es bueno recordar los buenos momentos. ¿Ve? Eso es un motivo para levantarse.'", "next": "node_bad_cliche", "scores": { "empathy": -2, "acp": -1, "assertiveness": 0, "conflict": 0 } }
+            ]
+        },
+         "node_end_neutral": {
+             "text": "Decides retirarte. No has empeorado la situación, pero tampoco has conseguido establecer un vínculo ni avanzar.",
+             "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 0, "acp": 0, "assertiveness": 0, "conflict": 0 } }]
+        },
+        "node_excellent": {
+            "text": "Manuel se queda en silencio, pero ya no es un silencio hostil. Es un silencio compartido. No has forzado nada, solo has creado el espacio para que él diera un pequeño paso. Has establecido una frágil pero importantísima base para el vínculo terapéutico. Excelente manejo.",
+            "options": [{ "text": "Finalizar y ver evaluación", "next": "end", "scores": { "empathy": 3, "acp": 3, "assertiveness": 1, "conflict": 0 } }]
+        },
+        "end": {}
+    }
+}
