@@ -1,0 +1,14 @@
+{
+  "titulacion": "Máster en Gerontología y Atención Centrada en la Persona",
+  "competencyMapId": "gerontologia",
+  "casos": [
+    "casos/gerontologia/caso_01.json",
+    "casos/gerontologia/caso_02.json",
+    "casos/gerontologia/caso_03.json",
+    "casos/gerontologia/caso_04.json",
+    "casos/gerontologia/caso_05.json",
+    "casos/gerontologia/caso_06.json",
+    "casos/gerontologia/caso_07.json",
+    "casos/gerontologia/caso_08.json"
+  ]
+}

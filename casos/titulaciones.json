@@ -1,0 +1,14 @@
+[
+  {
+    "id": "gerontologia",
+    "nombre": "Máster Universitario en Gerontología y Atención Centrada en la Persona",
+    "descripcion": "Casos prácticos sobre la atención y el cuidado de personas mayores.",
+    "manifest": "casos/gerontologia.json"
+  },
+  {
+    "id": "enfermeria",
+    "nombre": "Máster Universitario en Cuidados de Enfermería de Urgencias y Emergencias",
+    "descripcion": "Simulaciones de procedimientos y atención al paciente de urgencias y crítico.",
+    "manifest": "casos/enfermeria.json"
+  }
+]
