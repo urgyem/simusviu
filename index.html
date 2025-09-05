@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Casos Clínicos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div id="splash-screen" class="min-h-screen flex flex-col items-center justify-center p-4 text-center bg-white">
+        <img src="https://www.universidadviu.com/sites/universidadviu.com/themes/custom/sbx_theme/logo.webp" alt="Logo Universidad VIU" class="mx-auto h-24 mb-10">
+        <h1 class="text-5xl font-bold text-sky-700 mb-12">SIMULACIÓN DE CASOS CLÍNICOS</h1>
+        <button onclick="showScreen('degree-selection-screen')" class="bg-sky-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-sky-700 transition duration-300 animate-pulse">
+            Entrar
+        </button>
+    </div>
+
+    <div id="degree-selection-screen" class="hidden min-h-screen p-4 sm:p-8">
+        <div class="max-w-7xl mx-auto">
+            <img src="https://www.universidadviu.com/sites/universidadviu.com/themes/custom/sbx_theme/logo.webp" alt="Logo Universidad VIU" class="mx-auto h-12 mb-12">
+            <h1 class="text-3xl font-bold text-center text-sky-700 mb-8">Seleccione una Titulación</h1>
+            <div id="degree-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+    </div>
+
+    <div id="welcome-screen" class="hidden min-h-screen flex flex-col items-center justify-center p-4 text-center">
+        <div class="bg-white p-8 rounded-xl shadow-lg max-w-2xl w-full">
+            <img src="https://www.universidadviu.com/sites/universidadviu.com/themes/custom/sbx_theme/logo.webp" alt="Logo Universidad VIU" class="mx-auto h-12 mb-8">
+            <h1 class="text-4xl font-bold text-sky-700 mb-4">Simulador de Casos Clínicos</h1>
+            <h2 id="welcome-degree-title" class="text-2xl font-semibold text-gray-600 mb-6"></h2>
+            <p class="mb-8 text-gray-500">
+                Pulsa comenzar y elige uno de los casos clínicos disponibles
+            </p>
+            <div class="space-x-4">
+                <button onclick="showScreen('case-selection-screen')" class="bg-sky-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-sky-700 transition duration-300">Comenzar</button>
+                <button onclick="goBackToDegreeSelection()" class="bg-gray-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-gray-600 transition duration-300">Cambiar Titulación</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="case-selection-screen" class="hidden min-h-screen p-4 sm:p-8">
+        <div class="max-w-7xl mx-auto">
+            <h1 class="text-3xl font-bold text-center text-sky-700 mb-8">Selección de Casos</h1>
+            <div id="case-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+            <div class="mt-8 text-center">
+                <button onclick="showScreen('welcome-screen')" class="bg-gray-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-600 transition duration-300">Atrás</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="simulation-screen" class="hidden min-h-screen flex items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-xl shadow-lg max-w-4xl w-full">
+            <div class="flex items-start gap-6">
+                <div id="character-info" class="text-center">
+                    <img id="character-avatar" src="https://placehold.co/128x128/E2E8F0/4A5568?text=?" alt="Avatar del personaje" class="w-24 h-24 md:w-32 md:h-32 object-cover rounded-full mx-auto mb-2 border-4 border-gray-200">
+                    <h3 id="character-name" class="font-bold text-lg text-sky-700"></h3>
+                </div>
+                <div class="flex-1">
+                    <div id="simulation-text" class="bg-gray-100 p-6 rounded-lg mb-6 min-h-[150px]"></div>
+                    <div id="media-container" class="mb-6"></div>
+                    <div id="options-container" class="space-y-3"></div>
+                </div>
+            </div>
+             <button onclick="showScreen('case-selection-screen')" class="mt-6 text-sm text-gray-500 hover:text-sky-600">← Volver a la selección de casos</button>
+        </div>
+    </div>
+
+    <div id="evaluation-screen" class="hidden min-h-screen flex items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl w-full">
+            <h1 class="text-3xl font-bold text-center text-sky-700 mb-2">Informe de Evaluación</h1>
+            <h2 id="evaluation-case-title" class="text-xl font-semibold text-center text-gray-500 mb-8"></h2>
+            <h3 class="text-lg font-semibold mb-4 text-gray-700">Matriz de Competencias</h3>
+            <div id="competency-matrix" class="space-y-4 mb-8"></div>
+            <h3 class="text-lg font-semibold mb-2 text-gray-700">Análisis Cualitativo</h3>
+            <div class="bg-gray-50 p-6 rounded-lg">
+                <div class="mb-4">
+                    <h4 class="font-bold text-green-600">Principales Fortalezas Demostradas:</h4>
+                    <p id="feedback-strengths" class="text-gray-600"></p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-amber-600">Áreas Clave de Mejora:</h4>
+                    <p id="feedback-improvements" class="text-gray-600"></p>
+                </div>
+            </div>
+            <div class="mt-8 text-center space-x-4">
+                <button onclick="restartCase()" class="bg-sky-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-sky-700 transition duration-300">Reintentar Caso</button>
+                <button onclick="showScreen('case-selection-screen')" class="bg-gray-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-600 transition duration-300">Ver otros casos</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="simulator.js"></script>
+</body>
+</html>

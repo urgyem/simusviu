@@ -1,0 +1,19 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+.case-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.case-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.option-button {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.option-button:hover {
+    transform: translateX(10px);
+}
+#simulation-text {
+    white-space: pre-wrap;
+}
