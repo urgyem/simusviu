@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": 2,
   "title": "Una línea que nadie vigila",
   "subject": "Calidad, seguridad y aspectos biosicosociales en UCI",
   "description": "Caso de simulación sobre la identificación de riesgos asociados a CVC, aplicación de Proyectos Zero, análisis de incidentes y evaluación crítica de la calidad asistencial en UCI.",
@@ -123,3 +123,4 @@
     }
   }
 }
+
