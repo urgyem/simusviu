@@ -3,6 +3,7 @@
     "competencyMapId": "enfermeria",
     "casos": [
         "casos/enfermeria/caso_01.json",
+        "casos/enfermeria/caso_02.json",
         "casos/enfermeria/caso_03.json",
         "casos/enfermeria/caso_04.json",
         "casos/enfermeria/caso_05.json"
